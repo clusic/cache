@@ -26,8 +26,7 @@ function makeRule(target, property) {
   if (!target.rules) target.rules = {};
   if (!target.rules[property]) target.rules[property] = {
     rule: null,
-    expire: 0,
-    property
+    expire: 0
   };
   return target.rules[property];
 }

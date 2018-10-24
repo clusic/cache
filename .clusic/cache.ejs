@@ -1,7 +1,7 @@
-const Cache = require('@clusic/cache');
+const CommonCacheClassicModule = require('@clusic/cache');
 const { Expression, Expire } = require('@clusic/cache/help');
 
-module.exports = class <%=className%> extends Cache {
+module.exports = class <%=className%> extends CommonCacheClassicModule {
   constructor(...args) {
     super(...args);
   }

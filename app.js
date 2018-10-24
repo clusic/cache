@@ -40,15 +40,13 @@ module.exports = async (app, plugin) => {
 
 function createContext(ctx, service, target, config) {
   for (const i in service) {
-    if (!is.class(service[i])) {
+    if (!is.function(service[i])) {
       target[i] = service[i];
       createContext(ctx, service[i], target[i], config);
     } else {
       const CacheModule = service[i];
-      target[i] = class CacheTransformModule extends CacheModule {
-        constructor(redis) {
-          super(config.namespace, ctx, redis);
-        }
+      target[i] = function CacheTransformModule(redis) {
+        return new CacheModule(config.namespace, ctx, redis)
       }
     }
   }

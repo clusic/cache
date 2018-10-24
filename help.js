@@ -1,11 +1,11 @@
-exports.expression = function(rule) {
+exports.Expression = function(rule) {
   return (target, property) => {
     const object = makeRule(target, property);
     object.rule = rule;
   }
 };
 
-exports.expire = function(expire) {
+exports.Expire = function(expire) {
   return (target, property) => {
     const object = makeRule(target, property);
     object.expire = expire;

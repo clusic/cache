@@ -68,8 +68,10 @@ CacheModule.prototype.encode = function(data) {
 }
 
 CacheModule.prototype.path = function(name, args = {}) {
-  if (!this.rules[name]) throw new Error(`找不到名为'${name}'的缓存函数`);
-  name = this.rules[name].rule;
+  if (!/^\//.test(name)) {
+    if (!this.rules[name]) throw new Error(`找不到名为'${name}'的缓存函数`);
+    name = this.rules[name].rule;
+  }
   name = /^\//.test(name) ? name : '/' + name;
   return this.namespace + pathToRegexp.compile(name)(args).replace(/\//g, ':');
 }
